@@ -1,0 +1,47 @@
+import { Component, inject } from '@angular/core';
+import {
+  ReactiveFormsModule,
+  FormsModule,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
+import { User, UserGender } from '../store/user-state';
+import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
+
+interface UserForm {
+  firstName: FormControl<string>;
+  lastName: FormControl<string>;
+  age: FormControl<number | null>;
+  gender: FormControl<UserGender | null>;
+}
+
+@Component({
+  selector: 'app-user-form',
+  standalone: true,
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
+  templateUrl: './user-form.component.html',
+  styleUrl: './user-form.component.scss',
+})
+export class UserFormComponent {
+  private readonly store = inject(Store);
+  readonly UserGender = UserGender;
+  readonly userForm = new FormGroup<UserForm>({
+    firstName: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    lastName: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    age: new FormControl(null, {
+      validators: [Validators.required],
+    }),
+    gender: new FormControl(null, {
+      validators: [Validators.required],
+    }),
+  });
+}
