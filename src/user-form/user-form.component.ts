@@ -1,15 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormsModule,
-  FormBuilder,
   FormGroup,
   FormControl,
   Validators,
 } from '@angular/forms';
-import { User, UserGender } from '../store/user-state';
+import { UserGender } from '../store/user-state';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
 
 interface UserForm {
   firstName: FormControl<string>;
@@ -24,9 +22,9 @@ interface UserForm {
   imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent {
-  private readonly store = inject(Store);
   readonly UserGender = UserGender;
   readonly userForm = new FormGroup<UserForm>({
     firstName: new FormControl('', {
