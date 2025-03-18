@@ -12,6 +12,4 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'ngrx-training';
-}
+export class AppComponent {}

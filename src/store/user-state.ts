@@ -4,15 +4,12 @@ export interface User {
   lastName: string;
   age: number;
   gender: UserGender;
+  image?: string;
 }
 
 export enum UserGender {
   MALE = 'male',
   FEMALE = 'female',
-}
-
-export interface AppState {
-  users: UserState;
 }
 
 export interface UserState {
@@ -21,3 +18,8 @@ export interface UserState {
 }
 
 export type CreatedUser = Omit<User, 'id'>;
+
+export enum UserFormMode {
+  CREATE = 'create',
+  EDIT = 'edit',
+}
