@@ -13,6 +13,7 @@ interface UserForm {
   firstName: FormControl<string>;
   lastName: FormControl<string>;
   age: FormControl<number | null>;
+  image: FormControl<string | null>;
   gender: FormControl<UserGender | null>;
 }
 
@@ -41,5 +42,6 @@ export class UserFormComponent {
     gender: new FormControl(null, {
       validators: [Validators.required],
     }),
+    image: new FormControl(null),
   });
 }
